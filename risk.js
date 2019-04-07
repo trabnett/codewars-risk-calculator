@@ -1,9 +1,13 @@
 function battleOutcome( attacker , defender ) {
-    res = [0,0];
-    attacker.sort((a, b)  =>  b - a);
-    defender.sort((a,b) => b - a);
-    defender.length === 2 ? (attacker[0] <= defender[0] ? res[0] += 1 : res[1] += 1) + (attacker[1] <= defender[1] ? res[0] += 1 : res[1] += 1) : attacker[0] <= defender[0] ? res[0] += 1 : res[1] += 1
+    let res = [0,0];
+    let rolls = 0
+    sortedAtt = [...attacker].sort((a, b)  =>  b - a);
+    sortedDef = [...defender].sort((a,b) => b - a);
+    (sortedAtt.length > sortedDef.length) ? rolls = defender.length : rolls = attacker.length
+    for (i = 0; i < rolls; i++){
+        sortedAtt[i] <= sortedDef[i] ? res[0] += 1 : res[1] += 1
+    }
     return res
 }
 
-console.log(battleOutcome([4,6],[4,4]))
+console.log(battleOutcome([4,6,5,4,5],[4,4,5,5]))
